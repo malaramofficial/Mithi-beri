@@ -1,17 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>CodePen - Ggggggggg </title>
-  <link rel="stylesheet" href="./style.css">
-
-</head>
-<body>
-<!-- partial:index.partial.html -->
-<!DOCTYPE html>
 
 <html lang="en">
-  
+
 <head>
 
     <meta charset="UTF-8">
@@ -68,6 +58,8 @@
 
     <script>
 
+        // Firebase कॉन्फ़िगरेशन
+
         const firebaseConfig = {
 
             apiKey: "AIzaSyAYQAK-c5-EBGDN2fuBiAWK17HnqSg058E",
@@ -86,11 +78,15 @@
 
         };
 
+        // Firebase इनिशियलाइज़ करें
+
         const app = firebase.initializeApp(firebaseConfig);
 
         const auth = firebase.auth();
 
         const db = firebase.database();
+
+        // Google साइन-इन फंक्शन
 
         function googleSignIn() {
 
@@ -98,17 +94,27 @@
 
             auth.signInWithPopup(provider).then((result) => {
 
-                document.getElementById("voteForm").style.display = "block"; // वोटिंग फॉर्म दिखाएं
+                // वोटिंग फॉर्म दिखाएं
+
+                document.getElementById("voteForm").style.display = "block";
+
+                document.getElementById("googleSignInButton").style.display = "none"; // साइन-इन बटन छिपाएं
 
             }).catch((error) => {
 
                 console.error("Error signing in:", error.message);
 
+                document.getElementById('message').innerText = "साइन इन करने में त्रुटि: " + error.message;
+
             });
 
         }
 
+        // साइन-इन बटन पर क्लिक इवेंट
+
         document.getElementById("googleSignInButton").addEventListener("click", googleSignIn);
+
+        // बटन क्लिक करने पर वोट भेजें
 
         document.querySelectorAll('.vote-button').forEach(button => {
 
@@ -130,6 +136,8 @@
 
         });
 
+        // वोट लिखें
+
         function writeVote(choice) {
 
             db.ref('votes/' + choice).set({
@@ -144,6 +152,8 @@
 
                 console.error("Error writing vote:", error);
 
+                document.getElementById('message').innerText = "Vote submitting error: " + error.message;
+
             });
 
         }
@@ -152,8 +162,4 @@
 
 </body>
 
-</html>
-<!-- partial -->
-  
-</body>
 </html>
