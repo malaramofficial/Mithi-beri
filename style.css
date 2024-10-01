@@ -1,0 +1,129 @@
+body {
+
+    font-family: 'Arial', sans-serif;
+
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+
+    color: #333;
+
+    text-align: center;
+
+    padding: 20px;
+
+    height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+.container {
+
+    background: white;
+
+    padding: 40px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+
+    max-width: 500px;
+
+    margin: auto;
+
+}
+
+h1 {
+
+    font-size: 2.5rem;
+
+    margin-bottom: 20px;
+
+    color: #333;
+
+}
+
+.vote-button {
+
+    padding: 15px 30px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 1.5rem;
+
+    margin: 10px 0;
+
+    transition: background-color 0.3s, transform 0.3s;
+
+}
+
+#rameseButton {
+
+    background-color: #007bff;
+
+    color: white;
+
+}
+
+#chandButton {
+
+    background-color: #28a745;
+
+    color: white;
+
+}
+
+.vote-button:hover {
+
+    transform: scale(1.05);
+
+}
+
+.live-votes {
+
+    margin-top: 20px;
+
+    padding: 20px;
+
+    border: 2px solid #ddd;
+
+    border-radius: 10px;
+
+    background-color: #f9f9f9;
+
+}
+
+#liveVotes h2 {
+
+    font-size: 1.8rem;
+
+    color: #333;
+
+}
+
+#votePercentage {
+
+    font-weight: bold;
+
+    margin-top: 15px;
+
+    font-size: 1.2rem;
+
+}
+
+#message {
+
+    font-size: 1.5rem;
+
+    color: #007bff;
+
+    margin-top: 10px;
+
+}

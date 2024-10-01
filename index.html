@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Voting EVM</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script type="module" src="script.js" defer></script>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Voting EVM Machine</h1>
+
+        <div id="message"></div>
+
+        
+
+        <button id="rameseButton" class="vote-button">रमेश पोटलिया</button>
+
+        <button id="chandButton" class="vote-button">केवलचंद सारण</button>
+
+        
+
+        <div id="liveVotes" class="live-votes">
+
+            <h2>Live Votes:</h2>
+
+            <p id="rameseVotes">रमेश पोटलिया: 0 votes</p>
+
+            <p id="chandVotes">चंद सारण: 0 votes</p>
+
+            <div id="votePercentage"></div>
+
+        </div>
+
+        
+
+        <form id="voteForm" style="display: none;">
+
+            <h2>Your Vote is Important!</h2>
+
+            <button type="submit">Submit Vote</button>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>
