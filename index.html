@@ -1,61 +1,159 @@
 <!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Ggggggggg </title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
 
 <html lang="en">
-
+  
 <head>
 
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Voting EVM</title>
+    <title>Voting App</title>
 
     <link rel="stylesheet" href="style.css">
 
-    <script type="module" src="script.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-database.js"></script>
 
 </head>
 
 <body>
 
-    <div class="container">
+    <div class="evm-machine">
 
-        <h1>Voting EVM Machine</h1>
+        <h1>Voting Machine</h1>
 
         <div id="message"></div>
 
-        
-
-        <button id="rameseButton" class="vote-button">रमेश पोटलिया</button>
-
-        <button id="chandButton" class="vote-button">केवलचंद सारण</button>
-
-        
-
-        <div id="liveVotes" class="live-votes">
-
-            <h2>Live Votes:</h2>
-
-            <p id="rameseVotes">रमेश पोटलिया: 0 votes</p>
-
-            <p id="chandVotes">चंद सारण: 0 votes</p>
-
-            <div id="votePercentage"></div>
-
-        </div>
-
-        
+        <button id="googleSignInButton">Sign in with Google</button>
 
         <form id="voteForm" style="display: none;">
 
-            <h2>Your Vote is Important!</h2>
+            <h2>Vote for Your Choice</h2>
 
-            <button type="submit">Submit Vote</button>
+            <div class="candidate">
+
+                <button type="button" class="vote-button" value="रमेश पोटलिया">रमेश पोटलिया</button>
+
+            </div>
+
+            <div class="candidate">
+
+                <button type="button" class="vote-button" value="केवलचंद सारण">केवलचंद सारण</button>
+
+            </div>
+
+            <div class="candidate">
+
+                <button type="button" class="vote-button" value="चंद">चंद</button>
+
+            </div>
 
         </form>
 
     </div>
 
+    <script>
+
+        const firebaseConfig = {
+
+            apiKey: "AIzaSyAYQAK-c5-EBGDN2fuBiAWK17HnqSg058E",
+
+            authDomain: "voting-app-f5d8b.firebaseapp.com",
+
+            databaseURL: "https://voting-app-f5d8b-default-rtdb.firebaseio.com/",
+
+            projectId: "voting-app-f5d8b",
+
+            storageBucket: "voting-app-f5d8b.appspot.com",
+
+            messagingSenderId: "572075489115",
+
+            appId: "1:572075489115:web:30e506ae04806e8a128c7e"
+
+        };
+
+        const app = firebase.initializeApp(firebaseConfig);
+
+        const auth = firebase.auth();
+
+        const db = firebase.database();
+
+        function googleSignIn() {
+
+            const provider = new firebase.auth.GoogleAuthProvider();
+
+            auth.signInWithPopup(provider).then((result) => {
+
+                document.getElementById("voteForm").style.display = "block"; // वोटिंग फॉर्म दिखाएं
+
+            }).catch((error) => {
+
+                console.error("Error signing in:", error.message);
+
+            });
+
+        }
+
+        document.getElementById("googleSignInButton").addEventListener("click", googleSignIn);
+
+        document.querySelectorAll('.vote-button').forEach(button => {
+
+            button.addEventListener('click', function() {
+
+                const choice = this.value;
+
+                writeVote(choice);
+
+                this.classList.add('pressed'); // बटन दबाने का इफेक्ट
+
+                setTimeout(() => {
+
+                    this.classList.remove('pressed'); // इफेक्ट को हटाएं
+
+                }, 300);
+
+            });
+
+        });
+
+        function writeVote(choice) {
+
+            db.ref('votes/' + choice).set({
+
+                choice: choice
+
+            }).then(() => {
+
+                document.getElementById('message').innerText = "Vote submitted successfully!";
+
+            }).catch((error) => {
+
+                console.error("Error writing vote:", error);
+
+            });
+
+        }
+
+    </script>
+
 </body>
 
+</html>
+<!-- partial -->
+  
+</body>
 </html>
